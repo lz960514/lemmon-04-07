@@ -29,7 +29,10 @@ git add .
 ```
 git commit -m "first commit"
 ```
-4. git branch <分支名称> 创建分支  git branch 查看分支
+4. git branch <分支名称> 创建分支
+- git branch 查看分支
+- git branch -a 查看所有分支(包含远程分支)
+- git branch -d <分支名称> 删除本地分支
 ```
 git branch <分支名称>
 ```
@@ -69,6 +72,7 @@ git clone https://github.com/lz960514/lemmon-04-07.git
 ```
 git pull
 ```
+- git pull origin (分支名称)  拉取其它分支(拉取时必须切换到当前分支下)
 12. gitlab生成SHH密钥
 - 邮箱要和git config user.email 一致
 ```
