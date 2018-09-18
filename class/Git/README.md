@@ -32,6 +32,7 @@ git commit -m "first commit"
 4. git branch <分支名称> 创建分支
 - git branch 查看分支
 - git branch -a 查看所有分支(包含远程分支)
+- git branch -r 查看所有远程分支(不包含本地分支)
 - git branch -d <分支名称> 删除本地分支
 ```
 git branch <分支名称>
