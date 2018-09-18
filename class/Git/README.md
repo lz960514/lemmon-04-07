@@ -72,7 +72,7 @@ git clone https://github.com/lz960514/lemmon-04-07.git
 ```
 git pull
 ```
-- git pull origin (分支名称)  拉取其它分支(拉取时必须切换到当前分支下)
+- git pull (仓库别名) (分支名称)  拉取其它分支(拉取时必须切换到当前分支下),通过clone 的仓库别名为 origin
 12. gitlab生成SHH密钥
 - 邮箱要和git config user.email 一致
 ```
