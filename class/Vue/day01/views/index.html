@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-demo</title>
+    <style>
+        button {
+            cursor: pointer;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .box.active {
+            background: hotpink;
+        }
+
+        .chat {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat .item {
+            margin: 10px 0;
+            display: flex;
+        }
+
+        .chat .item.other {
+            justify-content: flex-end;
+        }
+
+        .chat .item .message {
+            display: inline-block;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <span>{{title}}</span> -->
+        <!-- <div v-for="item in arr">{{item}}</div> -->
+        <!--
+        <table style="width:600px;border-collapse: collapse">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in users">
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.sex}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        -->
+        <!-- 单向绑定  v-bind:绑定的变量是单向绑定-->
+        <!-- 当变量发生变化时更新view 模板 不能修改变量 -->
+        <!-- 简写语法 : 号代替 v-bind-->
+        <!-- <input type="text" v-bind:value="inputValue"> -->
+        <!-- <br> -->
+        <!-- <input type="text" :value="inputValue"> -->
+        <!-- <br> -->
+
+        <!-- 双向绑定 v-model 绑定的变量是向绑定-->
+        <!-- 双向绑定既可以获取变量又可以修改变量 -->
+        <!-- <input type="text" v-model="inputValue"> -->
+        <!-- <br> -->
+
+        <!-- 插值表达式以及指令里所引用的值都是data里的变量 -->
+        <!-- v-show指令里的值需要一个布尔值 -->
+        <!-- 当为true时元素显示  当为false时元素隐藏 -->
+        <!-- 原理使用css里的 dispaly 来完成 -->
+        <!-- <div style="width:300px;height:300px;background:red" v-show="show"></div> -->
+
+        <!-- v-if指令里的值需要一个布尔值 -->
+        <!-- 当为true时元素显示  当为false时元素隐藏 -->
+        <!-- 原理是从dom中添加和移除元素实现 -->
+        <!-- <div style="width:300px;height:300px;background:yellow" v-if="!show"></div> -->
+
+        <!-- 使用 display:none 去隐藏一个元素 会占用dom得到性能 如果数据过多 浏览器性能会变差 -->
+        <!-- 显示和隐藏使用频率较高的情况下使用 v-show  反之使用 v-if -->
+
+        <!-- 使用 v-on 给元素绑定事件 -->
+        <!-- <button type="button" v-on:click="show=!show">显示</button> -->
+
+        <!-- <ul> -->
+        <!-- <li v-for="(item,index) in arr2" v-show="!true">{{index}}</li> -->
+        <!-- </ul> -->
+
+        <!-- <button type="button" v-on:click="click">SHOW</button> -->
+        <!-- <hr> -->
+        <!--
+        <div id="form">
+            <label for="">姓名：</label>
+            <br>
+            <input type="text" v-model="user.name">
+            <br>
+            <label for="">年龄：</label>
+            <br>
+            <input type="text" v-model="user.age">
+            <br>
+            <label for="">性别：</label>
+            <br>
+            <input type="text" v-model="user.sex">
+            <br>
+            <button type="button" v-on:click="click2">PUSH</button>
+        </div>
+        -->
+        <!-- <div id="text"> -->
+        <!-- v-on:  简写 "@" -->
+        <!-- <textarea rows="10" v-model="text" @input="keydown"></textarea> -->
+        <!-- 不使用事件获取事件 -->
+        <!-- <input type="text" v-model="text"> -->
+        <!-- </div> -->
+        <!-- <div v-html="text"></div> -->
+        <!-- 绑定class样式 ':class' 
+            :class="{active:isactive}"
+            可以是对象的方式绑定
+            对象的key是样式的名称
+            key的value 是决定样式是否添加  是一个布尔值
+        -->
+        <!-- <div class="box" :class="{active:isactive,hover:ishove}"></div> -->
+        <div class="chat">
+            <div class="item" :class="{other: item.type == 'other'}" v-for="(item,index) in message">
+                <div class="message">
+                    {{item.user}}说：{{item.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

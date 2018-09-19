@@ -1,2 +1,5 @@
 node_modules/
+typings/
 package-lock.json
+typings.json
+jsconfig.json

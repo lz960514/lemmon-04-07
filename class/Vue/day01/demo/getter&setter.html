@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6拦截器</title>
+</head>
+
+<body>
+
+    <input type="text" name="aval" id="aval">
+    <input type="text" name="bval" id="bval">
+
+
+
+    <script>
+        let vm = {
+            get title() { // 拦截访问title成员的数据
+                return atitle
+            },
+            set title(val) { //拦截设置titlt成员数据
+                document.getElementById("bval").value = val;
+            }
+        }
+        document.getElementById("aval").onkeyup = function () {
+            vm.title = this.value;
+        }
+    </script>
+</body>
+
+</html>
