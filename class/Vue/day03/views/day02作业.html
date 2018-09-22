@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>day02作业</title>
+    <style>
+        .complat {
+            width: 200px;
+            height: 26px;
+            position: relative;
+        }
+        .complat .input {
+            width: 260px;
+            height: 26px;
+            border: 1px solid #ddd;
+            outline: none;
+            padding: 0 5px;
+            box-sizing: border-box;
+        }
+        .complat .list {
+            height: auto;
+            width: auto;
+            min-width: 260px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            margin-top: 2px;
+            position: absolute;
+            border-bottom: none;
+        }
+        .complat .list .item {
+            width: auto;
+            min-width: 260px;
+            height: 24px;
+            line-height: 24px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .complat .list .item:hover {
+            background: #f2f2f2;
+        }
+    </style>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="complat">
+            <input type="text" class="input" v-model="emailValue">
+            <div class="list" v-if="emailValue">
+                <div class="item" v-for="(item,index) in emailList" @click="emailValue += item" v-if="!(emailValue.indexOf('@') > -1)">{{emailValue}}{{item}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                emailValue: "",
+                emailList: ["@qq.com","@163.com","@gmail.com"]
+            }
+        })
+    </script>
+</body>
+
+</html>

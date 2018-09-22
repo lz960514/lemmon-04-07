@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+    </style>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <my-button type="button" theme="default" size="sm">按钮</my-button> -->
+        <!-- <button @click="click('123',$event)">按钮</button> -->
+        <div class="box" @click="click2">
+            <button @click.stop="click('123',$event)">按钮</button>
+        </div>
+        <input type="text" @keydown.="key">
+    </div>
+
+    <script>
+        Vue.component("MyButton", {
+            props: ["theme", "size"],
+            data() {
+                return {
+
+                }
+            },
+            template: `
+                <button type="button" :class="['btn' ,'btn-' + theme, 'btn-' + size]" @click="click">
+                    <slot></slot>
+                </button>
+            `,
+            methods: {
+                click() {
+                    console.log(event)
+                }
+            }
+        })
+        new Vue({
+            el: "#app",
+            methods: {
+                click(num, e) {
+                    // 阻止单击事件继续传播(组织事件派发)
+                    // 修饰符 .stop
+                    // event.stopPropagation();
+                    alert("子元素");
+                },
+                click2() {
+                    alert("父元素");
+                },
+                input() {
+                    console.log(event)
+                },
+                key() {
+                    console.log(event);
+                    console.log(event.keyCode);
+                    // 阻止元素的默认行为
+                    // 修饰符 .prevent
+                    // event.preventDefault();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

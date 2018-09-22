@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed</title>
+    <style>
+
+    </style>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+
+
+    <script>
+        Vue.component("EInput", {
+            template: `
+                <div class="e-input">
+                    <input type="text" />
+                </div>
+            `,
+        })
+
+
+        new Vue({
+            el: "#app",
+            template: `
+                <div>
+                    <EInput />
+                </div>
+            `,
+        })
+    </script>
+</body>
+
+</html>

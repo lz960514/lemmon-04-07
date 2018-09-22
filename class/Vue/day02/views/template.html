@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template 里的模板 只能出现一个唯一的元素
+            template: `
+                <div class="app">
+                <input type="text" v-model="search" />
+                    <ul>
+                        <li v-for="(user,index) in searchValuesCopy()">
+                            {{user.name}}{{user.age}}
+                        </li>
+                    </ul>
+                </div>
+            `,
+            data: {
+                title: "Hello Vue!",
+                aValue: 100,
+                bValue: 200,
+                users: [{
+                        name: "张三",
+                        age: 20
+                    },
+                    {
+                        name: "张四",
+                        age: 10
+                    },
+                    {
+                        name: "王五",
+                        age: 20
+                    }
+                ],
+                search: ""
+            },
+            methods: {
+                // 方法一样可以做到 computed 的功能 访问时需要添加()
+                searchValuesCopy() {
+                    return this.users.filter((value, index) => {
+                        // console.log(value.name.indexOf(this.search));
+                        return value.name.indexOf(this.search) > -1 || value.age == this.search;
+                    })
+                }
+            },
+            computed: { // 计算
+                sumAandB() {
+                    // return 出 computed 的计算结果
+                    return this.aValue * this.bValue;
+                },
+                searchValues() {
+                    return this.users.filter((value, index) => {
+                        // console.log(value.name.indexOf(this.search));
+                        return value.name.indexOf(this.search) > -1 || value.age == this.search;
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

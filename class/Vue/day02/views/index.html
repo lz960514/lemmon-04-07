@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue 样式处理</title>
+    <style>
+        * {
+            padding: 0;
+            color: #fff;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #333;
+        }
+
+        input[type=range] {
+            width: 300px;
+        }
+
+        input[type=button],input[type=range],button{
+            outline: none;
+            cursor: pointer;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background: red;
+            transition: all 0.3s linear;
+        }
+
+        .box.small {
+            width: 200px;
+            height: 200px;
+            transition: all 0.3s linear;
+        }
+
+        .v_table {
+            width: 480px;
+            border-collapse: collapse;
+        }
+
+        .error {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .warning {
+            background: #ffc107;
+            color: #fff;
+        }
+
+        .primary {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .v_btn {
+            width: 60px;
+            height: 21px;
+            border: none;
+            background: crimson;
+            color: #fff;
+            border-radius: 2px;
+            margin: 0 10px;
+        }
+
+        #app .content {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: fixed;
+            z-index: 111;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script src="../../../../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="content" :style="{opacity:range / 100}">
+            <!-- :class 绑定 -->
+            <!-- <div :class="['box',{small:isOver}]" @mouseover="isOver=true" @mouseout="isOver=false"></div> -->
+            <div class="v_class">
+                <label for="">姓名：</label>
+                <input type="text" v-model="user.name">
+                <label for="">成绩：</label>
+                <input type="text" v-model="user.num">
+                <button type="button" @click="push" :class="['v_btn']">PUSH</button>
+                <hr>
+                <table :class="['v_table']">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>成绩</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(user,index) in users" :class="{
+                                    primary:user.num >= 80 && user.num <= 120,
+                                    warning:user.num >= 60 && user.num <= 61,
+                                    error:user.num < 60 && user.num > 0
+                                }">
+                            <td>{{user.name}}</td>
+                            <td>{{user.num}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+
+            <!-- :style 绑定 -->
+            <label for="">box宽度：</label>
+            <input type="text" v-model="text">
+            <button type="button" :class="['v_btn']" @click="add">增加</button>
+            <button type="button" :class="['v_btn']" @click="dec">减小</button>
+            <input type="range" v-model="range">
+            <span>{{range}}</span>
+            <hr>
+            <div class="box" :style="{width:range + '%'}">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                isOver: false,
+                users: [{
+                        name: "小明",
+                        num: 50
+                    },
+                    {
+                        name: "晓芳",
+                        num: 80
+                    },
+                    {
+                        name: "小红",
+                        num: 60
+                    }
+                ],
+                user: {
+                    name: "",
+                    num: ""
+                },
+                boxWidth: 100,
+                text: "",
+                range: "100"
+            },
+            methods: {
+                push() {
+                    if (this.user.name && this.user.num) {
+                        this.users.push(this.user);
+                        this.user = {};
+                    } else {
+                        alert(`请输入数据`);
+                    }
+                },
+                add() {
+                    this.boxWidth += 50;
+                },
+                dec() {
+                    if (this.boxWidth <= 50) {
+                        alert(`不能再小了`);
+                    } else {
+                        this.boxWidth -= 50;
+                    }
+                }
+            },
+            watch: {
+                text(n, o) {
+                    this.boxWidth = n;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
