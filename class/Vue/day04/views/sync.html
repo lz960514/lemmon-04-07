@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sync修饰符</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+
+    <script>
+        Vue.component("DInput", {
+            props: {
+                a: String,
+                b: String
+            },
+            template: `
+                <div>
+                    <input type="text" v-model="inp1" />    
+                    <input type="text" v-model="inp2" />    
+                </div>
+            `,
+            data() {
+                return {
+                    inp1: this.a,
+                    inp2: this.b
+                }
+            },
+            watch: {
+                a(n) {
+                    this.inp1 = n;
+                },
+                inp1(n){
+                    this.$emit("update:a", n);
+                },
+                b(n) {
+                    this.inp2 = n;
+                },
+                inp2(n) {
+                    this.$emit("update:b", n);
+                }
+            }
+        })
+
+
+        var vm = new Vue({
+            el: "#app",
+            template: `
+                <div>
+                    <h1>A:{{value1}}<input type="text" v-model="value1" /></h1>
+                    <h1>B:{{value2}}<input type="text" v-model="value2" /></h1>
+                    <DInput :a.sync="value1" :b.sync="value2"/>    
+                </div>
+            `,
+            data: {
+                value1: "a",
+                value2: "b"
+            },
+        })
+    </script>
+</body>
+
+</html>

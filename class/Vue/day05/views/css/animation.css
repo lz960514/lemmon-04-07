@@ -1,0 +1,116 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #515a6e;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+    width: 300px;
+    height: 300px;
+}
+
+.box {
+    width: 300px;
+    height: 300px;
+    background: #FF0000;
+}
+
+
+/* 动画进入之前 */
+/* .fade-enter {
+    width: 0;
+    height: 0;
+    opacity: 0;
+} */
+
+/* 进入激活的状态 */
+/* .fade-enter-active {
+    transition: all 20s;
+} */
+
+/* 动画进入到什么转态 */
+/* .fade-enter-to {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+} */
+
+/* 动画离开之前 */
+/* 此样式不会被触发 */
+/* .fade-leave {
+    width: 500px;
+    height: 500px;
+    opacity: 1;
+} */
+
+/* 离开激活的状态 */
+/* .fade-leave-active {
+    transition: all 20s;
+} */
+
+/* 动画离开到什么转态 */
+/* .fade-leave-to {
+    width: 0;
+    height: 0;
+    opacity: 0;
+} */
+
+@keyframes fadeIn {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+    }
+
+    to {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn .5s linear;
+}
+
+.fade-out {
+    animation: fadeOut .5s linear;
+}
+
+.fadeDot3 {
+    animation-duration: .5s;
+}

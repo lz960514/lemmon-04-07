@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed&event</title>
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+
+
+    <script>
+        Vue.component("Button", {
+            template: `
+                <div class="btn" @click="$emit('bb',$event,123)">
+                    <button>按钮</button>
+                </div>
+            `,
+            // 组件内部的方法
+            methods: {
+                // click() {
+                //     // alert("组件内部的方法");
+                //     // 组件内部的方法传递到组件上
+                //     // 由元素的事件触发 触发到组件的事件监听上
+                //     // 真实的html元素触发事件 => 触发组件上的事件
+                //     // $emit 用来触发组件上监听的事件
+                //     // console.log(this.$emit);
+                //     // this.$emit("要触发的事件名称");
+                //     this.$emit("bb");
+                // }
+
+            }
+        })
+
+
+        new Vue({
+            el: "#app",
+            template: `
+                <div>
+                    <Button @bb="click" />
+                </div>
+            `,
+            // 组件上默认没有事件
+            methods: {
+                click(e,n) {
+                    // alert("组件上的方法");
+                    console.log(e);
+                    console.log(n);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

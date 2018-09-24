@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>为初始化的变量</title>
+    <style>
+        .userinfo {
+            width: 600px;
+            height: auto;
+            min-height: 300px;
+            border: 1px solid #000;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="userinfo">
+            <div v-for="(user,index) in users">
+                <span>{{user.name}}</span>
+                <span>{{user.age}}</span>
+                <span>{{user.six}}</span>
+                <span>{{user.status || '未设置'}}</span>
+                <button type="button" @click="status(user)">改变状态</button>
+            </div>
+        </div>
+        <label for="">姓名：</label>
+        <input type="text" v-model.trim="name">
+        <label for="">年龄：</label>
+        <input type="text" v-model.trim="age">
+        <label for="">性别：</label>
+        <input type="text" v-model.trim="six">
+        <button type="button" @click="push">添加</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                users: [],
+                name: "",
+                age: "",
+                six: ""
+            },
+            methods: {
+                status(user) {
+                    // user.name = "老王";
+                    // user.age = 18;
+                    // user.six = "人妖";
+                    // 如果要在一个对象上添加一个为创建的响应式数据
+                    // 需要一个额外的方法
+                    this.$set(user, "status", "启用");
+                    // user.status = "未设置" ? user.status = "启用" : user.status = "未启用";
+                    console.log(user);
+                },
+                push() {
+                    if (!this.name || !this.age || !this.six) {
+                        alert("数据不能为空");
+                    } else {
+                        let user = {
+                            name: this.name,
+                            age: this.age,
+                            six: this.six
+                        };
+                        this.users.push(user);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

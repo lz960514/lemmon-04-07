@@ -18,12 +18,41 @@
 
 
     <script>
+        // Vue会自动给EInput添加一个别名 e-input
         Vue.component("EInput", {
+            props: { // props 类型验证
+                id: {
+                    type: String, // 类型验证
+                    required: false, // 验证是否必须
+                },
+                index: {
+                    type: [Number, String], // 设置多个类型
+                    required: false,
+                },
+                arr: {
+                    type:Array,
+                    required: false,
+                },
+                bgcolor: {
+                    type: String,
+                    required: false,
+                    default: "green", // 默认值
+                },
+                sum: null, // 不验证类型 可以设置 null 或 false
+                fns: {
+                    // 自定义验证函数
+                    validator:(value) => {
+                        return Array.isArray(value) && value.length >= 3;
+                    }
+                }
+            },
             template: `
-                <div class="e-input">
-                    <input type="text" />
+                <div class="e-input" :style="{background:bgcolor}">
+                    id:{{id}}
+                    index:{{index}}
                 </div>
             `,
+            inheritAttrs: false, // 禁用特性继承 （阻止继承props）
         })
 
 
@@ -31,9 +60,13 @@
             el: "#app",
             template: `
                 <div>
-                    <EInput />
+                    <EInput id="test" user-name="100" :arr="[]" :index="index" class="btn" bgcolor="red" sum="100" :fns="[1,2,3]" />
+                    <EInput bgcolor="yellow" :fns="[1,2,3]" hehe="xxx" />
                 </div>
             `,
+            data: {
+                index: 100
+            },
         })
     </script>
 </body>

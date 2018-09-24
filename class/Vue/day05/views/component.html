@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件的生命周期</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component("Card", {
+            template: `
+                <div class="app">
+                    <div>
+                        <h1>{{value || 'Hello Vue !!'}}</h1>
+                    </div> 
+                </div>
+            `,
+            data() {
+                return {
+                    value: "",
+                }
+            },
+            // 组件开始创建前
+            beforeCreate() {
+                console.log(`beforeCreate 组件开始创建前`);
+                // 在组件开始创建之前，是不能访问组件的任何实例和方法
+                // console.log(this.value);
+            },
+            created() {
+                console.log(`beforeCreate 组件创建好了`);
+                // 组件创建好后可以访问组件的实例的变量和方法
+                // 组件创建好之后还不能访问dom
+                // console.log(this.value);
+                // ajax 请求可以在这个钩子函数实现
+            },
+            beforeMount() {
+                // 组件开始挂载
+                // 组件刚要被挂在
+                // 可以访问到要挂载的目标(el: "#app") 无法访问dom元素
+                console.log(`beforeMount 组件开始挂载`);
+                // console.log(this.$el);
+            },
+            mounted() {
+                // 组件挂载完成
+                // 组件挂载完成后可以访问到dom元素
+                console.log(`mounted 组件挂载完成`);
+                // console.log(this.$el);
+                // 获取组件的dom元素要在这个钩子函数执行或之后执行
+            },
+            beforeUpdate() {
+                // 和模板访问的数据更新之前
+                console.log(`beforeUpdate 和模板访问的数据更新之前`);
+            },
+            updated() {
+                // 和模板访问的数据更新完成
+                console.log(`updated 和模板访问的数据更新完成`);
+            },
+            beforeDestroy() {
+                // 当组件销毁之前触发
+                console.log(`beforeDestroy 当组件销毁之前触发`);
+            },
+            destroyed() {
+                // 当组件销毁之后触发
+                console.log(`destroyed 当组件销毁之后触发`);
+            },
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            template: `
+                <div>
+                    <Card v-if="isShow" />
+                    <button @click="show">显示</button> 
+                </div>
+            `,
+            data: {
+                isShow: true
+            },
+            methods: {
+                show() {
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

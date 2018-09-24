@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>banner2</title>
+    <style>
+        * {
+            font-size: 0;
+        }
+        .banner {
+            width: 960px;
+            height: 640px;
+            position: relative;
+        }
+
+        .item {
+            position: absolute;
+            z-index: 222;
+        }
+        .item img {
+            width: 960px;
+            height: 640px;
+        }
+        input[type="button"] {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            width: 50px;
+            height: 50px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            color: #fff;
+            position: absolute;
+            z-index: 666;
+            top: 50%;
+            margin-top: -25px;
+        }
+        input[type="button"].left{
+            left: 0;
+            background: rgba(0, 0, 0, .3)  url(./img/prev.png) no-repeat;
+            background-size: 30px 30px;
+            background-position: 6px 9px;
+        }
+        input[type="button"].right{
+            right: 0;
+            background: rgba(0, 0, 0, .3) url(./img/next.png) no-repeat;
+            background-size: 30px 30px;
+            background-position: 13px 10px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./js/banner2.js"></script>
+</body>
+</html>

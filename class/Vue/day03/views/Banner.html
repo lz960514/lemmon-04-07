@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banner</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .item img {
+            width: 640px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+
+    <script>
+        Vue.component("Banner", {
+            props: {
+                imgs: {
+                    validator: (value) => {
+                        // console.log(value);
+                        return Array.isArray(value) && value.length >= 1;
+                    },
+                }
+            },
+            template: `
+                <div class="banner">
+                    <div class="item" v-for="(item, i) in imgs" v-show="i == index">
+                            <img :src="item" >
+                    </div>
+                    <div v-show="imgs.length>1">
+                        <button @click="prev">上一张</button>
+                        <button @click="next">下一张</button>
+                    </div>
+                </div>
+            `,
+            data() {
+                return {
+                    index: 0,
+                }
+            },
+            methods: {
+                prev() {
+                    this.index--;
+                    if (this.index < 0) {
+                        console.log(this.index);
+                        this.index = this.imgs.length - 1;
+                    }
+                },
+                next() {
+                    this.index++;
+                    if (this.index > this.imgs.length - 1) {
+                        this.index = 0;
+                    }
+                }
+            }
+        })
+
+        new Vue({
+            el: "#app",
+            template: `
+                <div class="main">
+                    <Banner :imgs="imgs" />
+                </div>
+            `,
+            data: {
+                imgs: [
+                    "http://img1.3lian.com/2015/a1/46/d/100.jpg",
+                    "http://img3.imgtn.bdimg.com/it/u=514898128,4171807485&fm=214&gp=0.jpg",
+                    "http://up.enterdesk.com/edpic_source/66/d1/01/66d101b5b9ac3a1f78e852d9c44c83f3.jpg",
+                    "http://up.enterdesk.com/edpic_source/62/44/de/6244de1143f5f14491cf54433583d6bb.jpg"
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
