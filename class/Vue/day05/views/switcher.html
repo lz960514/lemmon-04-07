@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>switcher</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        .switcher {
+            box-sizing: border-box;
+            background: #ccc;
+            border-radius: 11px;
+            cursor: pointer;
+            transition: .3s linear all;
+            position: relative;
+            padding: 1px;
+
+        }
+
+        .switcher.small {
+            width: 44px;
+            height: 22px;
+        }
+
+        .switcher.large {
+            width: 56px;
+            height: 22px;
+        }
+
+        .switcher.active {
+            background: #2d8cf0;
+        }
+
+        .switcher .btn {
+            background: #fff;
+            transition: .3s linear all;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .switcher.small .btn.active {
+            background: #fff;
+            transform: translateX(22px);
+        }
+
+        .switcher.large .btn.active {
+            background: #fff;
+            transform: translateX(34px);
+        }
+
+        .switcher.small .on {
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            color: #fff;
+        }
+
+        .switcher.large .on {
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            color: #fff;
+        }
+
+        .switcher.small .off {
+            position: absolute;
+            right: 6px;
+            top: 2px;
+            color: #fff;
+        }
+
+        .switcher.large .off {
+            position: absolute;
+            right: 6px;
+            top: 2px;
+            color: #fff;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./js/switcher.js"></script>
+</body>
+
+</html>
